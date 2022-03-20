@@ -11,5 +11,13 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
+# Terraform
+modules/
+*.tfstate
+terraform.*
+.terraform
+
+# Temporary function archives
+temp/
 # Dependency directories (remove the comment below to include it)
 # vendor/
