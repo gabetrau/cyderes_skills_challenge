@@ -31,7 +31,7 @@ var books = []book{
 	{ID: "12", Title: "Nineteen Eighty-Four", Author: "George Orwell", Genre: "fiction"},
 }
 
-func handler(w http.ResponseWriter, r *http.Request) {
+func handler(c *gin.Context) {
 	name := os.Getenv("NAME")
 	if name == "" {
 		name = "World"
@@ -76,7 +76,6 @@ func getBookByAuthor(c *gin.Context) {
 func main() {
 	// Determine port for HTTP service.
 	log.Print("starting server...")
-	http.HandleFunc("/", handler)
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -85,6 +84,7 @@ func main() {
 	}
 
 	router := gin.Default()
+	router.GET("/", handler)
 	router.GET("/books", getBooks)
 	router.GET("/books/:author", getBookByAuthor)
 	router.POST("/books", postBooks)
