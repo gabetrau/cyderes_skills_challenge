@@ -28,7 +28,7 @@ steps:
 # Save test logs to Google Cloud Storage
 artifacts:
   objects:
-    location: gs:'gabes-cyderes-skills-challenge-bucket'
+    location: gs://gabes-cyderes-skills-challenge-bucket
     paths:
       - ${SHORT_SHA}_test_log.xml
 # Store images in Google Artifact Registry
