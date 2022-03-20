@@ -14,8 +14,8 @@ steps:
     args: ["push", "gcr.io/${PROJECT_ID}/${_SERVICE_NAME}"]
 
 substitutions:
-  _SERVICE_FOLDER: cloud-run-goapp
-  _SERVICE_NAME: gabes-library
+  _SERVICE_FOLDER: goservice
+  _SERVICE_NAME: library
 
 images:
   - "gcr.io/${PROJECT_ID}/${_SERVICE_NAME}"
