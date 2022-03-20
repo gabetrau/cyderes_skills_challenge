@@ -1,21 +1,13 @@
 package main
 
 import (
+	"fmt"
+	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
 	"os"
 	"strings"
-
-	"github.com/gin-gonic/gin"
 )
-
-func handler(c *gin.Context) {
-	name := os.Getenv("NAME")
-	if name == "" {
-		name = "World"
-	}
-	c.IndentedJSON(http.StatusOK, "Hello "+name+"! Welcome to my Library.")
-}
 
 type book struct {
 	ID     string `json:"id"`
@@ -37,6 +29,14 @@ var books = []book{
 	{ID: "10", Title: "Oliver Twist", Author: "Charles Dickens", Genre: "fiction"},
 	{ID: "11", Title: "Animal Farm", Author: "George Orwell", Genre: "fiction"},
 	{ID: "12", Title: "Nineteen Eighty-Four", Author: "George Orwell", Genre: "fiction"},
+}
+
+func handler(c *gin.Context) {
+	name := os.Getenv("NAME")
+	if name == "" {
+		name = "World"
+	}
+	fmt.Fprintf(w, "Hello %s!\n", name)
 }
 
 func getBooks(c *gin.Context) {
@@ -75,6 +75,9 @@ func getBookByAuthor(c *gin.Context) {
 
 func main() {
 	// Determine port for HTTP service.
+	log.Print("starting server...")
+	http.HandleFunc("/", handler)
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
@@ -82,10 +85,9 @@ func main() {
 	}
 
 	router := gin.Default()
-	router.GET("/", handler)
 	router.GET("/books", getBooks)
 	router.GET("/books/:author", getBookByAuthor)
 	router.POST("/books", postBooks)
 
-	router.Run("localhost:" + port)
+	router.Run(":" + port)
 }
