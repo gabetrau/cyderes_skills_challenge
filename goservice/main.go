@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
@@ -32,11 +31,7 @@ var books = []book{
 }
 
 func handler(c *gin.Context) {
-	name := os.Getenv("NAME")
-	if name == "" {
-		name = "World"
-	}
-	fmt.Fprintf(w, "Hello %s!\n", name)
+	c.String(http.StatusOK, "hello world")
 }
 
 func getBooks(c *gin.Context) {
