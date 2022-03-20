@@ -3,7 +3,6 @@ steps:
   - name: golang
     entrypoint: /bin/bash
     args:
-      - cd gabes-library
       - -c
       - |
         go get -u github.com/jstemmer/go-junit-report
