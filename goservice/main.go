@@ -31,7 +31,7 @@ var books = []book{
 	{ID: "12", Title: "Nineteen Eighty-Four", Author: "George Orwell", Genre: "fiction"},
 }
 
-func handler(c *gin.Context) {
+func handler(w http.ResponseWriter, r *http.Request) {
 	name := os.Getenv("NAME")
 	if name == "" {
 		name = "World"
