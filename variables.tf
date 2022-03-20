@@ -1,6 +1,6 @@
 variable "project" {
   type        = string
-  description = "golden-object-344518"
+  description = "Google Cloud Platform Project ID"
 }
 
 variable "region" {

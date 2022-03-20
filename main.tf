@@ -12,14 +12,11 @@ provider "google" {
 }
 
 locals {
-  function_folder = "func-go"
-  function_name   = "sorting-alpha"
+  service_folder = "goservice"
+  service_name   = "library"
 
-  service_folder = "cloud-run-goapp"
-  service_name   = "gabes-library"
-
-  bucket_name   = "${var.project}"
+  bucket_name   = "${var.project}-cyderes"
 
   deployment_name = "library"
-  gabes_library_worker_sa  = "serviceAccount:${google_service_account.gabes_library_worker.email}"
+  library_worker_sa = "serviceAccount:${google_service_account.library_worker.email}"
 }
