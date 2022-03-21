@@ -23,13 +23,13 @@ ex. curl -X POST https://library-63f35y33qa-uc.a.run.app/books
 	
 
 Decided on GCP for cloud platform 
-	* chose this because of CYDERES close relationship with Google Chronicle.
-	* I also enjoy the talks google cloud tech gives about its services. 
-	* Serverless possibilities with GCP: Cloud Run, Cloud Engine, Cloud Functions
-		- Cloud Run = bringing serverless to containers using Google's Kuebernetes Engine 
-		- Cloud Engine = run applications on cloud
-		- Cloud Functions = cloud services <-> cloud functions -> invokes other services
-	* API Gateway = use to manage multiple API's that use Cloud Run
+* chose this because of CYDERES close relationship with Google Chronicle.
+* I also enjoy the talks google cloud tech gives about its services. 
+* Serverless possibilities with GCP: Cloud Run, Cloud Engine, Cloud Functions
+	- Cloud Run = bringing serverless to containers using Google's Kuebernetes Engine 
+	- Cloud Engine = run applications on cloud
+	- Cloud Functions = cloud services <-> cloud functions -> invokes other services
+* API Gateway = I tried to use this with Cloud Run and Cloud Functions but wasn't able to do it
 
 Resource I used for inspiration: https://github.com/GoogleCloudPlatform/serverless-expeditions/tree/main/terraform-serverless
   
