@@ -1,3 +1,3 @@
-module example.com/m
+module sorting.com/a
 
-go 1.18
+go 1.16
