@@ -31,11 +31,11 @@ var books = []book{
 }
 
 func handler(c *gin.Context) {
-	c.String(http.StatusOK, "hello world")
+	c.String(http.StatusOK, "Welcome to my library API :)\nhttps://github.com/gabetrau/cyderes_skills_challenge")
 }
 
 func getBooks(c *gin.Context) {
-	c.IndentedJSON(http.StatusOK, books)
+	c.JSON(http.StatusOK, books)
 }
 
 func postBooks(c *gin.Context) {
@@ -46,7 +46,7 @@ func postBooks(c *gin.Context) {
 	}
 
 	books = append(books, newBook)
-	c.IndentedJSON(http.StatusCreated, newBook)
+	c.JSON(http.StatusCreated, newBook)
 }
 
 func formatAuthor(a string) string {
@@ -62,10 +62,10 @@ func getBookByAuthor(c *gin.Context) {
 		}
 	}
 	if len(foundBooks) <= 0 {
-		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "No books by that author found"})
+		c.JSON(http.StatusNotFound, gin.H{"message": "No books by that author found"})
 		return
 	}
-	c.IndentedJSON(http.StatusOK, foundBooks)
+	c.JSON(http.StatusOK, foundBooks)
 }
 
 func main() {
