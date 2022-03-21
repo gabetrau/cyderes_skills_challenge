@@ -8,10 +8,11 @@ URL: https://library-63f35y33qa-uc.a.run.app
 * /books -> POST request with JSON attached to add book to the library
 	
 example
+```
 curl -X POST https://library-63f35y33qa-uc.a.run.app/books
 -H 'Content-Type: application/json'
 -d '{"id": "13", "title": "Harry Potter and the Order of the Pheonix", "author": "J.K Rowling", "genre": "fiction"}'
-	
+```
 
 Decided on GCP for cloud platform 
 * chose this because of CYDERES close relationship with Google Chronicle.
