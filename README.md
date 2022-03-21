@@ -16,9 +16,10 @@ URL: https://library-63f35y33qa-uc.a.run.app/
 * /books -> GET request that returns sorted list by title of all the books in the library
 * /books/<author> -> GET request that returns sorted list of books by a specified author
 * /books -> POST request with JSON attached to add book to the library
-  ex. curl -X POST https://library-63f35y33qa-uc.a.run.app/books
-   -H 'Content-Type: application/json'
-   -d '{"id": "13", "title": "Harry Potter and the Order of the Pheonix", "author": "J.K Rowling", "genre": "fiction"}'
+	
+ex. curl -X POST https://library-63f35y33qa-uc.a.run.app/books
+-H 'Content-Type: application/json'
+-d '{"id": "13", "title": "Harry Potter and the Order of the Pheonix", "author": "J.K Rowling", "genre": "fiction"}'
 	
 
 Decided on GCP for cloud platform 
