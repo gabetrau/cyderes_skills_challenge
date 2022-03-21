@@ -1,5 +1,5 @@
 // Package p contains an HTTP Cloud Function.
-package main
+package p
 
 import (
 	"encoding/json"
@@ -7,15 +7,19 @@ import (
 	"html"
 	"io"
 	"log"
+	"sort"
 	"net/http"
-	"os"
 )
 
+// HelloWorld prints the JSON encoded "message" field in the body
+// of the request or "Hello, World!" if there isn't one.
 func SortAlpha(w http.ResponseWriter, r *http.Request) {
 	type item struct {
 		Title string
 	}
 
+
+	var titles = []string{}
 	dec := json.NewDecoder(r.Body)
 
 	// read open bracket
@@ -39,8 +43,7 @@ func SortAlpha(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
 			return
 		}
-
-		fmt.Fprintln(w, html.EscapeString(i.Title))
+		titles = append(titles, i.Title)
 	}
 
 	// read closing bracket
@@ -50,22 +53,9 @@ func SortAlpha(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
 		return
 	}
-}
 
-func main() {
-	// Determine port for HTTP service.
-	log.Print("starting server...")
-	http.HandleFunc("/", SortAlpha)
-
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
-		log.Printf("defaulting to port %s", port)
-	}
-
-	// Start HTTP server.
-	log.Printf("listening on port %s", port)
-	if err := http.ListenAndServe(":"+port, nil); err != nil {
-		log.Fatal(err)
+	sort.Strings(titles)
+	for _, ti := range titles {
+		fmt.Fprintln(w, html.EscapeString(ti))
 	}
 }
