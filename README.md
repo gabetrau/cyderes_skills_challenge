@@ -47,14 +47,17 @@ Terraform files => main.tf, project.tf, storage.tf, variables.tf, goservice.tf, 
   
 # Steps to Create Infrastructure
   
-install gloud and connect with your project ID
+* install gloud and connect with your project ID
   
-clone this repository
-
+* clone this repository
+	
+```
 gcloud builds submit
-  
+```
+```
 terraform init
 terraform apply
+```
   - provide project id
   - yes
   
