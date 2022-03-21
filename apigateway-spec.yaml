@@ -1,0 +1,21 @@
+swagger: '2.0'
+info:
+  title: API_ID optional-string
+  descrition: API Gateway with Cloud Run and Cloud Func
+  version: 1.0.0
+schemes:
+  -https
+produces:
+  /todos:
+    get:
+      summary: show user library
+      operationId: library
+      x-google-backend:
+        address: https://library-63f35y33qa-uc.a.run.app/books
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+            
+            
