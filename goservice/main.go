@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"sort"
 	"strings"
 )
 
@@ -31,10 +32,30 @@ var books = []book{
 }
 
 func handler(c *gin.Context) {
-	c.String(http.StatusOK, "hello world")
+	c.String(http.StatusOK, "Welcome to Gabriel's Library :)\nhttps://github.com/gabetrau/cyderes_skills_challenge")
+}
+
+func sortBooks(titles []string, books []book) []book {
+	sort.Strings(titles)
+	var sortedBooks = []book{}
+	var size = len(books)
+	for i := 0; i < size; i++ {
+		for j := 0; j < size; j++ {
+			if strings.EqualFold(titles[i], books[j].Title) {
+				sortedBooks = append(sortedBooks, books[j])
+				continue
+			}
+		}
+	}
+	return sortedBooks
 }
 
 func getBooks(c *gin.Context) {
+	var titles = []string{}
+	for _, a := range books {
+		titles = append(titles, a.Title)
+	}
+	books = sortBooks(titles, books)
 	c.IndentedJSON(http.StatusOK, books)
 }
 
@@ -56,15 +77,18 @@ func formatAuthor(a string) string {
 func getBookByAuthor(c *gin.Context) {
 	author := c.Param("author")
 	var foundBooks = []book{}
+	var titles = []string{}
 	for _, a := range books {
 		if strings.EqualFold(formatAuthor(a.Author), formatAuthor(author)) {
 			foundBooks = append(foundBooks, a)
+			titles = append(titles, a.Title)
 		}
 	}
 	if len(foundBooks) <= 0 {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "No books by that author found"})
 		return
 	}
+	foundBooks = sortBooks(titles, foundBooks)
 	c.IndentedJSON(http.StatusOK, foundBooks)
 }
 
