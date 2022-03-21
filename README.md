@@ -1,15 +1,5 @@
 # cyderes_skills_challenge
-Creating GCP API utilizing API Gateway, Cloud Functions, Cloud Run, Terraform, and Cloud Build
-
-Looking for:
-	* programming style/best practices
-	* Git repo setup
-	* testing methodology
-		- CI integration
-		- 100% test coverage
-	* Strengths/Weaknesses
-	* Use Terraform to create infrastructure
-	* Creativity
+Created GCP API using Cloud Run, Cloud Build, and Terraform
 
 URL: https://library-63f35y33qa-uc.a.run.app
 * / -> GET request that returns welcome text
@@ -29,27 +19,44 @@ Decided on GCP for cloud platform
 	- Cloud Run = bringing serverless to containers using Google's Kuebernetes Engine 
 	- Cloud Engine = run applications on cloud
 	- Cloud Functions = cloud services <-> cloud functions -> invokes other services
-* API Gateway = I tried to use this with Cloud Run and Cloud Functions but wasn't able to do it
+* API Gateway = I tried to use this with Cloud Run and Cloud Functions but wasn't able to finish
 
 Resource I used for inspiration: https://github.com/GoogleCloudPlatform/serverless-expeditions/tree/main/terraform-serverless
   
 I decided to use Cloud Run. The source code is in the goservice folder. There is also a folder for a Cloud Function.
 The function works, but I did not get a chance to integrate it with the API.
-
   
 CI/CD done with cloudbuild.yaml
  * this file contains the logic for building an image out of the source code contained in the goservice directory
 
-  
 Terraform files => main.tf, project.tf, storage.tf, variables.tf, goservice.tf, gofunc.tf, outputs.tf
-  - I used these files to create my infrasture and should only require running the following commands
+  - I used these files to create and maintain my infrasture. Should only require running the following commands
 
-  
 # Steps to Create Infrastructure
   
 * install gloud and connect with your project ID
   
-* clone this repository
+* clone or fork this repository
+
+prerequisites: make sure that the correct services are enabled on gcloud so Terraform can use them
+
+to view service list
+```
+gcloud services list
+```
+to add services
+```
+gcloud services enable servicemanagement.googleapis.com
+gcloud services enable servicecontrol.googleapis.com
+gcloud services enable artifactregistry.googleapis.com
+gcloud services enable cloudapis.googleapis.com
+gcloud services enable cloudbuild.googleapis.com
+gcloud services enable cloudfunctions.googleapis.com
+gcloud services enable iam.googleapis.com
+gcloud services enable run.googleapis.com
+gcloud services enable storage-api.googleapis.com
+gcloud services enable storage.googleapis.com
+```
 	
 ```
 gcloud builds submit
