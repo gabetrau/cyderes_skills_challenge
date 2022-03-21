@@ -5,11 +5,11 @@ resource "google_cloud_run_service" "library" {
   autogenerate_revision_name = true
 
   template {
-    service_account_name = google_service_account.library_worker.email
     spec {
       containers {
-        image = data.external.image_digest.result.image
+	image = "gcr.io/${var.project}/${local.service_name}" 
       }
+      timeout_seconds = 900
     }
   }
   traffic {
@@ -40,8 +40,3 @@ resource "google_cloud_run_service_iam_policy" "noauth" {
 }
 
 
-# WORKAROUND 
-data "external" "image_digest" {
-  program = ["bash", "scripts/get_latest_tag.sh", var.project, local.service_name]
-}
-# END WORKAROUND
