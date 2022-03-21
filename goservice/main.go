@@ -32,7 +32,7 @@ var books = []book{
 }
 
 func handler(c *gin.Context) {
-	c.String(http.StatusOK, "Welcome to Gabriel's Library API :)\nhttps://github.com/gabetrau/cyderes_skills_challenge")
+	c.String(http.StatusOK, "Welcome to Gabriel's Library API :)\nhttps://github.com/gabetrau/cyderes_skills_challenge\n\n/books\n/books/<author>\n")
 }
 
 func sortBooks(titles []string, books []book) []book {
