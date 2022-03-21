@@ -13,10 +13,12 @@ provider "google" {
 
 locals {
   function_folder = "gofunc"
-  function_name = "sortAlpha"
+  function_name = "SortAlpha"
 
   service_folder = "goservice"
   service_name   = "library"
+  
+  bucket_name = "${var.project}-cyderes"
 
   deployment_name = "library"
   library_worker_sa = "serviceAccount:${google_service_account.library_worker.email}"
