@@ -13,12 +13,6 @@ resource "google_storage_bucket_object" "zip" {
     # to force the zip to be updated as soon as a change occurs
     name         = "src-${data.archive_file.source.output_md5}.zip"
     bucket       = google_storage_bucket.function_bucket.name
-
-    # Dependencies are automatically inferred so these lines can be deleted
-    depends_on   = [
-        google_storage_bucket.function_bucket,
-        data.archive_file.source
-    ]
 }
 
 # Create the Cloud function triggered by a `Finalize` event on the bucket
@@ -32,14 +26,6 @@ resource "google_cloudfunctions_function" "function" {
     source_archive_bucket = google_storage_bucket.function_bucket.name
     source_archive_object = google_storage_bucket_object.zip.name
 
-    # Must match the function name in the cloud function `main.py` source code
     trigger_http	  = true
     entry_point           = "SortAlpha"
-    
-    # Dependencies are automatically inferred so these lines can be deleted
-    depends_on            = [
-        google_storage_bucket.function_bucket,  # declared in `storage.tf`
-        google_storage_bucket_object.zip
-    ]
 }
-
