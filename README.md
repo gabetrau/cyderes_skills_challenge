@@ -40,26 +40,7 @@ Terraform files => main.tf, project.tf, storage.tf, variables.tf, goservice.tf, 
   
 * clone or fork this repository
 
-prerequisites: make sure that the correct services are enabled on gcloud so Terraform can use them
-
-to view service list
-```
-gcloud services list
-```
-to add services
-```
-gcloud services enable servicemanagement.googleapis.com
-gcloud services enable servicecontrol.googleapis.com
-gcloud services enable artifactregistry.googleapis.com
-gcloud services enable cloudapis.googleapis.com
-gcloud services enable cloudbuild.googleapis.com
-gcloud services enable cloudfunctions.googleapis.com
-gcloud services enable iam.googleapis.com
-gcloud services enable run.googleapis.com
-gcloud services enable storage-api.googleapis.com
-gcloud services enable storage.googleapis.com
-```
-	
+Start by running cloudbuild.yaml with the following command	
 ```
 gcloud builds submit
 ```
@@ -70,5 +51,4 @@ terraform apply
   - provide project id
   - yes
   
-
 	
